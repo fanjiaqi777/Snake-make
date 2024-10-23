@@ -1,0 +1,111 @@
+##Snakemake有很多好处，我就不多说了，这是一个使用singularity pull 的docker 镜像（主要是分析环境不用自己配置）
+##
+
+#需要首先 conda activate snakemake
+#在这个 Snakefile 中，每个规则都是数据分析过程中的一个步骤。各个步骤的输入和输出文件如下：
+
+#读取比对 (align_reads)：输入是原始读段文件，输出是比对后的 SAM 文件和日志。
+#排序 BAM 文件 (sort_bam)：输入是 SAM 文件，输出是排序后的 BAM 文件和索引文件。
+#基因表达计数 (count_genes)：输入是排序后的 BAM 文件和 GTF 注释文件，输出是基因表达量文件。
+#合并基因表达计数 (merge_gene_counts)：输入是每个样本的基因表达量文件，输出是合并后的基因表达量矩阵。
+#这个 Snakefile 自动化了从原始读段文件到基因表达矩阵的整个数据分析流程，每个步骤都依赖于前一个步骤的输出，形成了一个连贯且高效的基因组分析工作流程。
+SAMPLES = [
+    "M9A", "M99A", "M98A", "M97A", "M96A", "M8B", "M7A", "M6B", "M6A", "M5A",
+    "M59B", "M58B", "M58A", "M57B", "M57A", "M56A", "M55B", "M54B", "M54A", "M53B",
+    "M52B", "M52A", "M51A", "M50B", "M4B", "M49B", "M49A", "M48B", "M47B", "M46A",
+    "M43B", "M43A", "M42A", "M41B", "M41A", "M40B", "M40A", "M3B", "M3A", "M39B",
+    "M39A", "M38B", "M38A", "M37B", "M37A", "M36B", "M36A", "M35A", "M34B", "M34A",
+    "M33A", "M32A", "M31B", "M30B", "M30A", "M2B", "M2A", "M29B", "M29A", "M28B",
+    "M28A", "M27A", "M26A", "M25B", "M24B", "M23B", "M22B", "M225A", "M224A", "M223A",
+    "M222A", "M221A", "M220A", "M21B", "M21A", "M219A", "M218A", "M217A", "M216A", "M215A",
+    "M214A", "M213A", "M212A", "M211A", "M210A", "M20B", "M209A", "M208A", "M206A", "M205A",
+    "M204A", "M203A", "M202A", "M201A", "M1B", "M19B", "M19A", "M199A", "M198A", "M197A",
+    "M196A", "M195A", "M194A", "M193A", "M192A", "M191A", "M18B", "M18A", "M189A", "M188A",
+    "M187A", "M186A", "M185A", "M183A", "M182A", "M181A", "M180A", "M17B", "M179A", "M178A",
+    "M177A", "M176A", "M175A", "M174A", "M173A", "M172A", "M171A", "M170A", "M16B", "M169A",
+    "M168A", "M167A", "M166A", "M165A", "M164A", "M163A", "M162A", "M161A", "M160A", "M15B",
+    "M15A", "M159A", "M158A", "M157A", "M156A", "M155A", "M154A", "M153A", "M152A", "M151A",
+    "M150A", "M14A", "M149A", "M148A", "M147A", "M146A", "M145A", "M144A", "M143A", "M142A",
+    "M141A", "M140A", "M13B", "M13A", "M139A", "M138A", "M137A", "M136A", "M135A", "M134A",
+    "M133A", "M132A", "M131A", "M130A", "M12B", "M129A", "M128A", "M127A", "M126A", "M125A",
+    "M124A", "M123A", "M122A", "M121A", "M120A", "M11B", "M119A", "M118A", "M117A", "M116A",
+    "M115A", "M114A", "M113A", "M112A", "M111A", "M110A", "M10A", "M109A", "M108A", "M107A",
+    "M106A", "M105A", "M104A", "M103A", "M102A", "M101A", "M100A"
+]
+
+
+
+rule all:
+    input:
+        expand("aligned/{sample}.sorted.bam", sample=SAMPLES),
+        expand("aligned/{sample}.sorted.bam.bai", sample=SAMPLES),
+        expand("/public1/home/sch10755/02.data/Fan-data/work/4.expression/{sample}_gene.tsv", sample=SAMPLES),
+        "/public1/home/sch10755/02.data/Fan-data/work/4.expression/all_gene_count-MAB-P1.tsv"
+
+rule align_reads:
+    input:
+        r1=lambda wildcards: f"/public1/home/sch10755/02.data/Fan-data/work/data/{wildcards.sample}_R1.fq.gz",
+        r2=lambda wildcards: f"/public1/home/sch10755/02.data/Fan-data/work/data/{wildcards.sample}_R2.fq.gz"
+    output:
+        sam="aligned/{sample}.sam",
+        summary="aligned/{sample}.summary"
+    threads: 10
+    shell:
+        """
+        echo "Processing {wildcards.sample}"
+        singularity exec /public1/home/sch10755/soft/rnaseq_latest.sif hisat2 -p {threads} --rg-id={wildcards.sample} --rg SM:{wildcards.sample} --rg LB:{wildcards.sample} --rg PL:ILLUMINA \
+        -x /public1/home/sch10755/02.data/Fan-data/work/ref/Prunus_persica.Prunus_persica_NCBIv2.dna.toplevel \
+        --dta --rna-strandness RF \
+        -1 {input.r1} \
+        -2 {input.r2} \
+        -S {output.sam} 2>{output.summary}
+        echo "Finished processing {wildcards.sample}, generated {output.sam}"
+        """
+
+rule sort_bam:
+    input:
+        "aligned/{sample}.sam"
+    output:
+        bam="aligned/{sample}.sorted.bam",
+        idx="aligned/{sample}.sorted.bam.bai"
+    threads: 10
+    shell:
+        """
+        echo "Sorting {input}"
+        singularity exec /public1/home/sch10755/soft/rnaseq_latest.sif samtools sort --threads {threads} -m 2G -o {output.bam} {input}
+        singularity exec /public1/home/sch10755/soft/rnaseq_latest.sif samtools index {output.bam}
+        rm {input}
+        echo "Finished sorting {input}, generated {output.bam}"
+        """
+
+rule count_genes:
+    input:
+        bam="aligned/{sample}.sorted.bam",
+        gtf="/public1/home/sch10755/02.data/Fan-data/work/ref/Prunus_persica.Prunus_persica_NCBIv2.51.gtf"
+    output:
+        "/public1/home/sch10755/02.data/Fan-data/work/4.expression/{sample}_gene.tsv"
+    threads: 10
+    shell:
+        """
+        echo "Counting genes for {input.bam}"
+        singularity exec /public1/home/sch10755/soft/rnaseq_latest.sif htseq-count --format bam --order pos --mode intersection-strict \
+        --stranded yes --minaqual 10 --type exon \
+        --idattr gene_id {input.bam} {input.gtf} > {output}
+        echo "Finished counting genes for {input.bam}, generated {output}"
+        """
+
+rule merge_gene_counts:
+    input:
+        expand("/public1/home/sch10755/02.data/Fan-data/work/4.expression/{sample}_gene.tsv", sample=SAMPLES)
+    output:
+        "/public1/home/sch10755/02.data/Fan-data/work/4.expression/all_gene_count-MAB-P1.tsv"
+    params:
+        inputs=lambda wildcards, input: ' '.join(f'-f {file} -l {sample}' for file, sample in zip(input, SAMPLES))
+    shell:
+        """
+        echo "Merging gene counts"
+        singularity exec /public1/home/sch10755/soft/rnaseq_latest.sif python /public1/home/sch10755/02.data/Fan-data/work/scripts/merge_gene_count-3.py -p /public1/home/sch10755/02.data/Fan-data/work/4.expression/all_gene_count-MAB-P1 {params.inputs}
+        echo "Finished merging gene counts, generated /public1/home/sch10755/02.data/Fan-data/work/4.expression/all_gene_count-MAB-P1.tsv"
+        """
+
+
