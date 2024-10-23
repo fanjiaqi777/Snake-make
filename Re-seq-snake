@@ -1,0 +1,304 @@
+SAMPLES = [
+    "KD_1706_67_HQ",
+    "KD_1705_65_HQ",
+    "KD_1706_47_HQ",
+    "KD_1704_136_HQ",
+    "KD_1706_59_HQ",
+    "KD_1706_20_HQ",
+    "KD_1705_41_HQ",
+    "KD_1706_42_HQ",
+    "KD_1705_61_HQ",
+    "KD_1705_109_HQ",
+    "KD_1705_18_HQ",
+    "KD_1706_12_HQ",
+    "KD_1706_65_HQ",
+    "KD_1704_88_HQ",
+    "KD_1704_58_HQ",
+    "KD_1706_43_HQ",
+    "KD_1704_107_HQ",
+    "KD_1705_62_HQ",
+    "KD_1705_88_HQ",
+    "KD_1706_18_HQ",
+    "KD_1705_4_HQ",
+    "KD_1705_78_HQ",
+    "KD_1704_53_HQ",
+    "KD_1705_44_HQ",
+    "KD_1705_91_HQ",
+    "KD_1705_85_HQ",
+    "KD_1706_21_HQ",
+    "KD_1706_33_HQ",
+    "KD_1706_8_HQ",
+    "KD_1705_52_HQ",
+    "KD_1705_122_HQ",
+    "KD_1705_102_HQ",
+    "KD_1705_8_HQ",
+    "KD_1704_61_HQ",
+    "KD_1704_85_HQ",
+    "KD_1706_11_HQ",
+    "KD_1704_54_HQ",
+    "KD_1705_128_HQ",
+    "KD_1705_131_HQ",
+    "KD_1705_66_HQ",
+    "KD_1704_60_HQ",
+    "KD_1705_24_HQ",
+    "KD_1706_80_HQ",
+    "KD_1706_13_HQ",
+    "KD_1706_85_HQ",
+    "KD_1705_82_HQ",
+    "KD_1705_113_HQ",
+    "KD_1704_103_HQ",
+    "KD_1704_81_HQ",
+    "KD_1704_56_HQ",
+    "KD_1705_20_HQ",
+    "KD_1705_30_HQ",
+    "KD_1705_10_HQ",
+    "KD_1706_57_HQ",
+    "KD_1705_2_HQ",
+    "KD_1705_115_HQ",
+    "KD_1704_122_HQ",
+    "KD_1704_114_HQ",
+    "KD_1706_28_HQ",
+    "KD_1705_130_HQ",
+    "KD_1705_7_HQ",
+    "KD_1705_135_HQ",
+    "KD_1705_58_HQ",
+    "KD_1705_60_HQ",
+    "KD_1706_58_HQ",
+    "KD_1704_135_HQ",
+    "KD_1704_66_HQ",
+    "KD_1705_86_HQ",
+    "KD_1706_16_HQ",
+    "KD_1704_67_HQ",
+    "KD_1706_62_HQ",
+    "KD_1705_96_HQ",
+    "KD_1705_111_HQ",
+    "KD_1705_123_HQ",
+    "KD_1705_92_HQ",
+    "KD_1705_80_HQ",
+    "KD_1706_60_HQ",
+    "KD_1705_73_HQ",
+    "KD_1706_89_HQ",
+    "KD_1706_55_HQ",
+    "KD_1705_94_HQ",
+    "KD_1706_3_HQ",
+    "KD_1705_134_HQ",
+    "KD_1705_110_HQ",
+    "KD_1704_55_HQ",
+    "KD_1705_6_HQ",
+    "KD_1705_104_HQ",
+    "KD_1705_49_HQ",
+    "KD_1706_63_HQ",
+    "KD_1705_118_HQ",
+    "KD_1704_94_HQ",
+    "KD_1706_26_HQ",
+    "KD_1705_35_HQ",
+    "KD_1705_93_HQ",
+    "KD_1706_35_HQ",
+    "KD_1705_108_HQ",
+    "KD_1706_10_HQ",
+    "KD_1706_87_HQ",
+    "KD_1704_75_HQ",
+    "KD_1706_38_HQ",
+    "KD_1704_134_HQ",
+    "KD_1705_97_HQ",
+    "KD_1705_98_HQ",
+    "KD_1706_88_HQ",
+    "KD_1706_19_HQ",
+    "KD_1706_49_HQ",
+    "KD_1705_103_HQ",
+    "KD_1706_27_HQ",
+    "KD_1705_79_HQ",
+    "KD_1705_16_HQ",
+    "KD_1705_132_HQ",
+    "KD_1706_15_HQ",
+    "KD_1706_51_HQ",
+    "KD_1706_69_HQ",
+    "KD_1704_57_HQ",
+    "KD_1705_117_HQ",
+    "KD_1705_125_HQ",
+    "KD_1706_44_HQ",
+    "KD_1705_68_HQ",
+    "KD_1706_41_HQ",
+    "KD_1705_5_HQ",
+    "KD_1705_48_HQ",
+    "KD_1706_1_HQ",
+    "KD_1704_64_HQ",
+    "KD_1705_53_HQ",
+    "KD_1705_19_HQ",
+    "KD_1706_52_HQ",
+    "KD_1705_114_HQ",
+    "KD_1706_82_HQ",
+    "KD_1706_24_HQ",
+    "KD_1705_67_HQ",
+    "KD_1705_100_HQ",
+    "KD_1705_36_HQ",
+    "KD_1706_78_HQ",
+    "KD_1705_11_HQ",
+    "KD_1706_54_HQ",
+    "KD_1706_84_HQ",
+    "KD_1705_77_HQ",
+    "KD_1704_68_HQ",
+    "KD_1706_79_HQ",
+    "KD_1704_131_HQ",
+    "KD_1706_86_HQ",
+    "KD_1705_1_HQ",
+    "KD_1705_90_HQ",
+    "KD_1704_132_HQ",
+    "KD_1706_37_HQ",
+    "KD_1704_52_HQ",
+    "KD_1704_116_HQ",
+    "KD_1706_5_HQ",
+    "KD_1705_138_HQ",
+    "KD_1705_74_HQ",
+    "KD_1704_78_HQ",
+    "KD_1706_9_HQ",
+    "KD_1705_3_HQ",
+    "KD_1706_32_HQ",
+    "KD_1706_14_HQ",
+    "KD_1705_59_HQ",
+    "KD_1704_92_HQ",
+    "KD_1705_12_HQ",
+    "KD_1704_71_HQ",
+    "KD_1705_101_HQ",
+    "KD_1705_64_HQ",
+    "KD_1705_106_HQ",
+    "KD_1704_121_HQ",
+    "KD_1706_7_HQ",
+    "KD_1705_40_HQ",
+    "KD_1706_25_HQ",
+    "KD_1706_70_HQ",
+    "KD_1705_33_HQ",
+    "KD_1704_77_HQ",
+    "KD_1706_17_HQ",
+    "KD_1705_75_HQ",
+    "KD_1705_42_HQ",
+    "KD_1706_30_HQ",
+    "KD_1704_80_HQ",
+    "KD_1706_71_HQ",
+    "KD_1705_43_HQ",
+    "KD_1705_84_HQ",
+    "KD_1705_21_HQ",
+    "KD_1705_105_HQ",
+    "KD_1704_79_HQ",
+    "KD_1705_76_HQ",
+    "KD_1705_89_HQ",
+    "KD_1705_133_HQ",
+    "KD_1705_63_HQ",
+    "KD_1705_22_HQ",
+    "KD_1704_96_HQ",
+    "KD_1705_99_HQ",
+    "KD_1705_46_HQ",
+    "KD_1705_83_HQ",
+    "KD_1706_48_HQ",
+    "KD_1705_116_HQ",
+    "KD_1706_73_HQ",
+    "KD_1706_77_HQ",
+    "KD_1706_22_HQ",
+    "KD_1704_97_HQ",
+    "KD_1705_121_HQ",
+    "KD_1706_2_HQ",
+    "KD_1706_90_HQ",
+    "KD_1705_54_HQ",
+    "ZGSP-1030_HQ",
+    "KD_1705_47_HQ",
+    "KD_1704_86_HQ",
+    "KD_1706_23_HQ",
+    "KD_1705_14_HQ",
+    "KD_1706_31_HQ",
+    "KD_1705_129_HQ",
+    "KD_1705_95_HQ",
+    "KD_1706_40_HQ",
+    "ZGSP-733_HQ",
+    "KD_1705_120_HQ",
+    "KD_1705_51_HQ",
+    "KD_1704_73_HQ",
+    "KD_1705_69_HQ",
+    "KD_1704_72_HQ",
+    "KD_1705_87_HQ",
+    "KD_1706_36_HQ",
+    "KD_1704_130_HQ",
+    "KD_1705_50_HQ",
+    "KD_1706_92_HQ",
+    "KD_1705_15_HQ",
+    "KD_1705_45_HQ",
+    "KD_1706_6_HQ",
+    "KD_1705_57_HQ",
+    "KD_1706_39_HQ",
+    "KD_1705_39_HQ",
+    "KD_1705_28_HQ",
+    "KD_1706_64_HQ",
+    "KD_1705_126_HQ",
+    "KD_1706_29_HQ",
+    "KD_1705_124_HQ",
+    "KD_1705_17_HQ",
+    "KD_1705_23_HQ",
+    "KD_1705_107_HQ",
+    "KD_1704_59_HQ",
+    "KD_1704_117_HQ",
+    "KD_1706_66_HQ"
+]
+
+
+
+
+rule all:
+    input:
+        expand("aligned/{sample}.sort.markdup.bam", sample=SAMPLES),
+        expand("aligned/{sample}.sort.bam.flagstat", sample=SAMPLES),
+        expand("aligned/{sample}.sort.bam.coverage", sample=SAMPLES)
+
+rule align_and_sort:
+    input:
+        r1=lambda wildcards: f"/public1/home/sch10755/02.data/Fan-data/KD-data/submit/{wildcards.sample}_R1.fq.gz",
+        r2=lambda wildcards: f"/public1/home/sch10755/02.data/Fan-data/KD-data/submit/{wildcards.sample}_R2.fq.gz",
+        ref="ref/Prunus_persica_v2.0.a1.scaffolds.fasta"
+    output:
+        bam="aligned/{sample}.sort.bam",
+        log="aligned/{sample}.bwa.log"
+    threads: 10
+    shell:
+        """
+        echo "Aligning and sorting {wildcards.sample}"
+        singularity exec /public1/home/sch10755/02.data/Fan-data/Software/Reseq_genek.sif bwa mem -t {threads} -R '@RG\tID:{wildcards.sample}\tSM:{wildcards.sample}\tPL:illumina' {input.ref} {input.r1} {input.r2} 2>{output.log} | \
+        singularity exec /public1/home/sch10755/02.data/Fan-data/Software/Reseq_genek.sif samtools sort -@ {threads} -m 10G -o {output.bam} -
+        echo "Finished aligning and sorting {wildcards.sample}, generated {output.bam}"
+        """
+
+rule mark_duplicates:
+    input:
+        bam="aligned/{sample}.sort.bam"
+    output:
+        bam="aligned/{sample}.sort.markdup.bam",
+        metrics="aligned/{sample}.marked_dup_metrics.txt"
+    threads: 10
+    shell:
+        """
+        echo "Marking duplicates for {input.bam}"
+        singularity exec /public1/home/sch10755/02.data/Fan-data/Software/Reseq_genek.sif java -Xmx4g -XX:ParallelGCThreads={threads} -jar /opt/picard.jar MarkDuplicates \
+        I={input.bam} O={output.bam} CREATE_INDEX=true REMOVE_DUPLICATES=true M={output.metrics}
+        echo "Finished marking duplicates for {input.bam}, generated {output.bam}"
+        """
+
+rule flagstat:
+    input:
+        bam="aligned/{sample}.sort.bam"
+    output:
+        flagstat="aligned/{sample}.sort.bam.flagstat"
+    shell:
+        """
+        echo "Generating flagstat for {input.bam}"
+        singularity exec /public1/home/sch10755/02.data/Fan-data/Software/Reseq_genek.sif samtools flagstat {input.bam} > {output.flagstat}
+        echo "Finished generating flagstat for {input.bam}, generated {output.flagstat}"
+        """
+
+rule coverage:
+    input:
+        bam="aligned/{sample}.sort.bam"
+    output:
+        coverage="aligned/{sample}.sort.bam.coverage"
+    shell:
+        """
+        echo "Calculating coverage for {input.bam}"
+        singularity exec /public1/home/sch10755/02.data/Fan-data/Software/Reseq_genek.sif samtools coverage {input.bam} > {output.coverage}
+        echo "Finished calculating coverage for {input.bam}, generated {output.coverage}"
+        """
